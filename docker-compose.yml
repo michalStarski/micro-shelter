@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "6060:80"
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+  adoptions:
+    build: ./adoptions
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./adoptions:/app
+    depends_on:
+      - db
+  animals:
+    build: ./animals
+    ports:
+      - "5001:3000"
+    volumes:
+      - ./animals:/app
+    depends_on:
+      - db
+  shelters:
+    build: ./shelters
+    ports:
+      - "5002:3000"
+    volumes:
+      - ./shelters:/app
+    depends_on:
+      - db
+  users:
+    build: ./users
+    ports:
+      - "5003:3000"
+    volumes:
+    - ./users:/app
+    depends_on:
+      - db

@@ -4,6 +4,6 @@ COPY . /app
 WORKDIR /app
 
 RUN yarn install --frozen-lockfile
-CMD yarn start
+CMD yarn watch
 
 EXPOSE 3000
